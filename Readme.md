@@ -23,7 +23,7 @@ https://www.figma.com/proto/tD6YcWx7WPjAKeXwui3bOi/Untitled?node-id=1-5&p=f&t=Ld
 
 ## 🌐 Live Demo
 
-https://yashhh710.github.io/Flavoria-proto
+https://yashhh710.github.io/Flavoria-proto/
 
 ---
 
