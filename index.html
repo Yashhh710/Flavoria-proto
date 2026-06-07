@@ -8,13 +8,27 @@
   <title>Flavoria</title>
   <link rel="stylesheet" href="globals.css" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style-fix.css" />  
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      width: 100%;
+      background: #0b0b0b;
+    }
+    #scaleWrap {
+      transform-origin: top left;
+      width: 1536px;
+    }
+    .desktop {
+      width: 1536px !important;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="desktop-scaler" id="desktopScaler">
+  <div id="scaleWrap">
     <div class="desktop">
-
       <img class="image"    src="img/image_6.png"  />
       <img class="img"      src="img/image_9.png"  />
       <img class="image-2"  src="img/image_1.png"  />
@@ -32,28 +46,28 @@
       <img class="image-14" src="img/image_13.png" />
       <img class="image-15" src="img/image_17.png" />
       <img class="image-16" src="img/image_16.png" />
-
     </div>
   </div>
 
   <script>
-    const ARTBOARD_W = 1536;
+    const DESIGN_W = 1536;
+    const wrap = document.getElementById('scaleWrap');
+    const desktop = wrap.querySelector('.desktop');
 
-    function applyScale() {
-      const scaler  = document.getElementById('desktopScaler');
-      const desktop = scaler.querySelector('.desktop');
-      const scale   = Math.min(window.innerWidth / ARTBOARD_W, 1); 
-
-      scaler.style.setProperty('--vw-scale', scale);
-
-      const artboardH = desktop.offsetHeight || parseInt(
-        getComputedStyle(desktop).minHeight, 10
-      );
-      scaler.style.height = (artboardH * scale) + 'px';
+    function scaleToFit() {
+      const s = window.innerWidth / DESIGN_W;
+      wrap.style.transform = `scale(${s})`;
+      requestAnimationFrame(() => {
+        const h = desktop.offsetHeight
+                  || parseInt(getComputedStyle(desktop).minHeight, 10);
+        const scaledH = h * s;
+        wrap.style.height = scaledH + 'px';
+        document.body.style.height = scaledH + 'px';
+      });
     }
 
-    applyScale();
-    window.addEventListener('resize', applyScale);
+    scaleToFit();
+    window.addEventListener('resize', scaleToFit);
   </script>
 </body>
 </html>
