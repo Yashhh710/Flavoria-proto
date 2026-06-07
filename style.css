@@ -1,3 +1,21 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0b0b0b;
+}
+
+.desktop-scaler {
+  width: 1536px;              
+  transform-origin: top left;
+  transform: scale(var(--vw-scale, 1));
+}
+
+.desktop {
+  position: relative;
+  width: 1536px;
+}
+
 .desktop {
   background-color: #ffffff;
   width: 100%;
